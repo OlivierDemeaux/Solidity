@@ -15,12 +15,44 @@ contract("MultiSigWallet", (accounts) => {
         wallet = await MultiSigWallet.new(owners, NUM_CONFIRMATIONS_REQUIRED)
     })
 
-    describe("executeTransaction", () => {
-        beforeEach(async () => {
-            const to = owners[0]
-            const value = 0
-            const data = "0x00"
+    describe("submit transaction", async () => {
+        const to = owners[0]
+        const value = 0
+        const data = "0x00"
 
+        it("should submit transaction", async () => {
+            assert.equal(await wallet.getTransactionCount(), 0)
+
+            const { logs } = await wallet.submitTransaction(to, value, data, {from: owners[0]})
+
+            assert.equal(logs[0].event, "SubmitTransaction")
+            assert.equal(logs[0].args.owner, owners[0])
+            assert.equal(logs[0].args.txId, 0)
+            assert.equal(logs[0].args.to, to)
+            assert.equal(logs[0].args.value, value)
+            assert.equal(logs[0].args.data, data)
+
+            assert.equal(await wallet.getTransactionCount(), 1)
+
+            const tx = await wallet.getTransaction(0)
+            assert.equal(tx.to, to)
+            assert.equal(tx.value, value)
+            assert.equal(tx.data, data)
+            assert.equal(tx.executed, false)
+            assert.equal(tx.numConfirmations, 0)
+        })
+
+        it("should not let non owner submit tx", async () => {
+            await expect(wallet.submitTransaction(to, value, data, {from: accounts[3]})).to.be.rejected
+        })
+    })
+
+    describe("executeTransaction", () => {
+        const to = owners[0]
+        const value = 0
+        const data = "0x00"
+
+        beforeEach(async () => {
             await wallet.submitTransaction(to, value, data)
             await wallet.confirmTransaction(0, { from: owners[0] })
             await wallet.confirmTransaction(0, { from: owners[1] })
@@ -28,8 +60,7 @@ contract("MultiSigWallet", (accounts) => {
 
         // execute transaction should succeed
         it("should execute", async () => {
-            const res = await wallet.executeTransaction(0, { from: owners[0] })
-            const { logs } = res
+            const { logs } = await wallet.executeTransaction(0, { from: owners[0] })
 
             assert.equal(logs[0].event, "ExecuteTransaction")
             assert.equal(logs[0].args.owner, owners[0])
@@ -43,17 +74,15 @@ contract("MultiSigWallet", (accounts) => {
         it("should reject if already executed", async () => {
             await wallet.executeTransaction(0, { from: owners[0] })
 
-            /*
-            try {
-              await wallet.executeTransaction(0, { from: owners[0] })
-              throw new Error("tx did not fail")
-            } catch (error) {
-              assert.equal(error.reason, "tx already executed")
-            }
-            */
+            await expect(wallet.executeTransaction(0, { from: owners[0] })).to.be.rejected
+        })
 
-            await expect(wallet.executeTransaction(0, { from: owners[0] })).to.be
-            .rejected
+        it("should reject if not owner", async () => {
+            await expect(wallet.confirmTransaction(0, {from: accounts[3]})).to.be.rejected
+        })
+
+        it("should reject if non exciting tx", async () => {
+            await expect(wallet.confirmTransaction(1, {from: accounts[0]})).to.be.rejected
         })
     })
 
@@ -117,11 +146,19 @@ contract("MultiSigWallet", (accounts) => {
         })
     })
 
-    it("should return the 3 owners", async() => {
-        const res = await wallet.getOwners()
-        assert.equal(res[0], owners[0])
-        assert.equal(res[1], owners[1])
-        assert.equal(res[2], owners[2])
+    describe("getOwners", () => {
+        it("should return the 3 owners", async() => {
+            const res = await wallet.getOwners()
+            assert.equal(res[0], owners[0])
+            assert.equal(res[1], owners[1])
+            assert.equal(res[2], owners[2])
+        })
+    })
+
+    describe("getTransactionCount", () => {
+        it("should return tx count", async () => {
+            assert.equal(await wallet.getTransactionCount(), 0)
+        })
     })
 
     describe("revoke confirmation", () => {
@@ -145,8 +182,7 @@ contract("MultiSigWallet", (accounts) => {
         })
 
         it("shoul revoke conf from owners[0]", async () => {
-            const res = await wallet.revokeConfirmation(0, {from: owners[0]})
-            const { logs } = res
+            const { logs } = await wallet.revokeConfirmation(0, {from: owners[0]})
             assert.equal(logs[0].event, 'RevokeConfirmation')
             assert.equal(logs[0].args.owner, owners[0])
             assert.equal(logs[0].args.txId, 0)
@@ -157,6 +193,14 @@ contract("MultiSigWallet", (accounts) => {
 
             const response = await wallet.isConfirmed(0, accounts[0])
             assert.equal(response, false)
+        })
+
+        it("should reject revoke from non owner", async () => {
+            await expect(wallet.revokeConfirmation(0, {from: accounts[4]})).to.be.rejected
+        })
+
+        it("should reject revoke for non exciting tx", async () => {
+            await expect(wallet.revokeConfirmation(1, {from: accounts[0]})).to.be.rejected
         })
     })
 
