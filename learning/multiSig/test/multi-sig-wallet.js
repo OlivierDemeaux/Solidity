@@ -15,6 +15,47 @@ contract("MultiSigWallet", (accounts) => {
         wallet = await MultiSigWallet.new(owners, NUM_CONFIRMATIONS_REQUIRED)
     })
 
+    describe("check constructor", async () => {
+
+        it("should deploy", async () => {
+            const wallet = await MultiSigWallet.new(owners, NUM_CONFIRMATIONS_REQUIRED)
+
+            for (let i = 0; i < owners.length; i++) {
+                assert.equal(await wallet.owners(i), owners[i])
+            }
+
+            assert.equal(await wallet.numConfirmationsRequired(), NUM_CONFIRMATIONS_REQUIRED)
+        })
+
+        it("should reject if no owners", async () => {
+            await expect(MultiSigWallet.new([], NUM_CONFIRMATIONS_REQUIRED)).to.be.rejected
+        })
+
+        it("should reject if nbConf > owners", async () => {
+            await expect(MultiSigWallet.new(owners, owners.length + 1)).to.be.rejected
+        })
+
+        it("should reject if owner not unique", async () => {
+            await expect(MultiSigWallet.new([owners[0], owners[0], owners[1]], NUM_CONFIRMATIONS_REQUIRED)).
+            to.be.rejected
+        })
+    })
+
+    describe("fallback", async () => {
+        it("should receive ether", async () => {
+            let balance = await web3.eth.getBalance(wallet.address)
+            assert.equal(balance, 0)
+
+            const { logs } = await wallet.sendTransaction({from: owners[0], value: 1})
+            assert.equal(logs[0].event, "Deposit")
+            assert.equal(logs[0].args.depositer, owners[0])
+            assert.equal(logs[0].args.amount, 1)
+            assert.equal(logs[0].args.balance, 1)
+            
+
+        })
+    })
+
     describe("submit transaction", async () => {
         const to = owners[0]
         const value = 0
@@ -86,7 +127,7 @@ contract("MultiSigWallet", (accounts) => {
         })
     })
 
-    describe("fail to execute tx bacause not enough confirmations", () => {
+    describe("fail to execute tx", () => {
         beforeEach(async () => {
             const to = owners[0]
             const value = 0
