@@ -51,8 +51,6 @@ contract("MultiSigWallet", (accounts) => {
             assert.equal(logs[0].args.depositer, owners[0])
             assert.equal(logs[0].args.amount, 1)
             assert.equal(logs[0].args.balance, 1)
-            
-
         })
     })
 
