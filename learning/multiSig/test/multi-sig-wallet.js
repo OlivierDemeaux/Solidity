@@ -229,8 +229,7 @@ contract("MultiSigWallet", (accounts) => {
             assert.equal(logs[0].args.txId, 0)
 
             const tx = await wallet.getTransaction(0)
-            const numConf = tx[4].words[0]
-            assert.equal(numConf, 1);
+            assert.equal(tx.numConfirmations, 1);
 
             const response = await wallet.isConfirmed(0, accounts[0])
             assert.equal(response, false)
