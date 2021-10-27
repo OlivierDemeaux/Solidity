@@ -20,5 +20,4 @@ Every week there is a 32 questions tests. The first test surprised me by hom dif
 As I update this repo, I will go back on the quizzes and my answers and review it all, forcing me to go over the material once more.
 
 ## Goals
-
 Learn Smart Contract Auditing, EVM in and out functionning and secrets.
