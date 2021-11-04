@@ -1,4 +1,4 @@
-Videos from 'assignment':
+Videos from 'assignments':
     - First video is a few Solidity pitfalls presented in front of a crowd. Nothing new.
 
     - Second video is just afew general ideas and points to protect your crypto.

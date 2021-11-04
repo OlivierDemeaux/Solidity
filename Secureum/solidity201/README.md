@@ -1,1 +1,0 @@
-Third week, deep dive into EVM functionning and Solidity building blocks like OpenZeppelin libraries functioning. 
