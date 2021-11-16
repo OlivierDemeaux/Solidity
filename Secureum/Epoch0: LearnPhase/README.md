@@ -14,7 +14,8 @@ Every week there is a 32 questions tests. The first test surprised me by hom dif
 - test #1 (ethereum101): 23/32(72%), not bad but not great (535 participants took this quiz, average score was 18.7/32, highest was 30/32, 216 got >64%.)
 - test #2 (solidity101): 25/32(78%), pretty good (471 participants took this quiz, average score was 14.4/32, average duration was 15:20, highest was 29/32, 101 got > 64% (> 20/32).)
 - test #3 (solidity201): 24/32(75%), pretty good (378 participants took this quiz, average score was 13.5/32, average duration was 14:43, highest was 27/32, 54 got > 64% (> 20/32).), was a complicated week getting into details of the EVM functioning.
-- test #4 (pitfall and best practices 101): 9/16(56%), not as good as I was hoping for but I didn't study as much as I should have so not surprised.
+- test #4 (pitfall and best practices 101): 9/16(56%), not as good as I was hoping for but I didn't study as much as I should have so not surprised (343 participants took this quiz, average score was 7.8/16, average duration was 14:36, highest was 16/16, 81 got > 64% (> 10/16).)
+- test #5 (pitfall and best practices 201): 6/8(75%), missed 2 questions on lack of attention errors, pretty mad at myself. (308 participants took this quiz, average score was 4.4/8, average duration was 13:18, highest was 8/8, 114 got > 64% (> 5/8)). 
 
 ## Reasons to maintain this repo
 As I update this repo, I will go back on the quizzes and my answers and review it all, forcing me to go over the material once more.
