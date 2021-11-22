@@ -7,6 +7,7 @@ Link to content => https://secureum.substack.com/p/audit-techniques-and-tools-10
 
 # Notes
 
+
 First article in Assignments:
 ### Audit prep checklist ([reference](https://diligence.consensys.net/posts/2019/09/how-to-prepare-for-a-smart-contract-audit/))
 

@@ -1,0 +1,10 @@
+Notes about the articles from assignments:
+
+First article: look in README for checklist from article.
+https://consensys.net/diligence/blog/2019/09/how-to-prepare-for-a-smart-contract-audit/
+
+Second Article: Explaination of what's an audit and how to prepare your project to get one.
+https://our.status.im/what-is-a-security-audit-when-you-should-get-one-and-how-to-prepare/
+
+Third article: Compilation of findings from audits.
+https://blog.trailofbits.com/2019/08/08/246-findings-from-our-smart-contract-audits-an-executive-summary/

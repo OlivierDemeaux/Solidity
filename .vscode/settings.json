@@ -1,0 +1,5 @@
+{
+    "solidity.defaultCompiler": "embedded",
+    "mythxvsc.accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMDYxYzZmMC0wNDZjLTRmNmQtYThlZS1mYzk4N2I5NzI1NDgiLCJpYXQiOjE2MzcwODY2OTcuNTE3LCJpc3MiOiJNeXRoWCBBdXRoIFNlcnZpY2UiLCJleHAiOjE5NTI2NjI2OTcuNTE0LCJ1c2VySWQiOiI2MTkzMzc3YjM0OTRlOTJlZWY3NmU3ZTAifQ.RRp0uAx157ksdzjfCX6WAWKqMzlwRiiD4D8BvgFOIVs",
+    "mythxvsc.ethAddress": ""
+}
