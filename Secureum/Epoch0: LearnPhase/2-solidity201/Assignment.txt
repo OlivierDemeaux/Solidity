@@ -1,0 +1,6 @@
+Assignments
+Understand all the OpenZeppelin Library contracts (many of which are widely-used): https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts
+Understand Solidity syntax and semantics implemented in Uniswap V3 contracts and related dependencies: https://github.com/Uniswap/uniswap-v3-core/tree/main/contracts
+Understand Solidity syntax and semantics implemented in Fei Protocol contracts and related dependencies: https://github.com/fei-protocol/fei-protocol-core/tree/master/contracts
+Understand Solidity syntax and semantics implemented in Chainlink contracts and related dependencies: https://github.com/smartcontractkit/chainlink/tree/develop/contracts/src/v0.4
+Understand Solidity syntax and semantics implemented in Opyn Gamma Protocol contracts and related dependencies: https://github.com/opynfinance/GammaProtocol/tree/master/contracts/core

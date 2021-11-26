@@ -1,0 +1,6 @@
+Assignments
+Explore the SWC Registry list and test cases: https://swcregistry.io/
+Watch “Intro to Security First Development” by Gonçalo Sá, ConsenSys Diligence: https://www.youtube.com/watch?v=72K57I9yvyI
+Watch “Protect your Crypto and Avoid Getting Hacked” by Mehdi Zerouali, Sigma Prime: https://www.youtube.com/watch?v=L2DRC6PjTgk
+Watch “DeFi Security: With So Many Hacks, Will It Ever Be Safe?” on Unchained Podcast with Dan Guido (Trail of Bits) and Taylor Monahan (MyCrypto): https://www.youtube.com/watch?v=Sc5fZ-Wprx8
+Attempt CTF: https://capturetheether.com/

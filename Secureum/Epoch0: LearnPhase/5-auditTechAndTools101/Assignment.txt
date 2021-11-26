@@ -1,0 +1,9 @@
+Assignments
+Read:
+How to Prepare for a Smart Contract Audit
+What is a Security Audit, When You Should Get One, and How to Prepare
+246 Findings From our Smart Contract Audits: An Executive Summary
+Run MythX (Use promotion code: SECUREUM2021) on Fei Protocol contracts and analyze the reported findings: https://github.com/fei-protocol/fei-protocol-core/tree/master/contracts
+Run Slither on Uniswap V3 contracts and analyze the reported findings: https://github.com/Uniswap/uniswap-v3-core/tree/main/contracts
+Watch “The Evolution of Smart Contract Security” by Dan Guido, Trail of Bits: https://www.youtube.com/watch?v=fOkQuNzVn_Q
+Attempt Paradigm CTF: https://github.com/paradigm-operations/paradigm-ctf-2021

@@ -1,0 +1,10 @@
+Assignments
+Read the audit report along with the smart contracts to understand all the reported findings for 1inch Liquidity Protocol: https://consensys.net/diligence/audits/2020/12/1inch-liquidity-protocol/
+Read the audit report along with the smart contracts to understand all the reported findings for Origin Dollar: https://github.com/trailofbits/publications/blob/master/reviews/OriginDollar.pdf
+Read the audit report along with the smart contracts to understand all the reported findings for Synthetix EtherCollateral: https://github.com/sigp/public-audits/blob/master/synthetix/ethercollateral/review.pdf
+Read the audit report along with the smart contracts to understand all the reported findings for Holdefi: https://blog.openzeppelin.com/holdefi-audit
+Stay updated with Ethereum security articles/news
+WeekInEthereumNews (security section): https://weekinethereumnews.com/
+BlockThreat Newsletter: https://www.blockthreat.io/
+Rekt: https://rekt.news/
+Secureum Newsletter: https://secureum.substack.com/

@@ -1,0 +1,6 @@
+Assignments
+Read the audit report along with the smart contracts to understand all the reported findings for Fei Protocol: https://consensys.net/diligence/audits/2021/01/fei-protocol
+Read the audit report along with the smart contracts to understand all the reported findings for Uniswap V3: https://github.com/Uniswap/uniswap-v3-core/blob/main/audits/tob/audit.pdf
+Read the audit report along with the smart contracts to understand all the reported findings for Chainlink: https://github.com/sigp/public-audits/blob/master/chainlink-1/review.pdf
+Read the audit report along with the smart contracts to understand all the reported findings for Opyn Gamma protocol: https://blog.openzeppelin.com/opyn-gamma-protocol-audit/
+Watch: OpenZeppelin tinchoabbate’s “Secure Development Series”: https://www.youtube.com/playlist?list=PLdJRkA9gCKOONBSlcifqLig_ZTyG_YLqz
