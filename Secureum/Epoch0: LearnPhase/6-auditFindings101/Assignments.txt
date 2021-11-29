@@ -4,3 +4,4 @@ Read the audit report along with the smart contracts to understand all the repor
 Read the audit report along with the smart contracts to understand all the reported findings for Chainlink: https://github.com/sigp/public-audits/blob/master/chainlink-1/review.pdf
 Read the audit report along with the smart contracts to understand all the reported findings for Opyn Gamma protocol: https://blog.openzeppelin.com/opyn-gamma-protocol-audit/
 Watch: OpenZeppelin tinchoabbate’s “Secure Development Series”: https://www.youtube.com/playlist?list=PLdJRkA9gCKOONBSlcifqLig_ZTyG_YLqz
+https://blog.openzeppelin.com/workshop-recap-secure-development-workshop-1/

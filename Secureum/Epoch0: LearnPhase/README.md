@@ -17,8 +17,8 @@ Every week there is a 32 questions tests. The first test surprised me by hom dif
 - test #4 (pitfall and best practices 101): 9/16(56%), not as good as I was hoping for but I didn't study as much as I should have so not surprised (343 participants took this quiz, average score was 7.8/16, average duration was 14:36, highest was 16/16, 81 got > 64% (> 10/16).)
 - test #5 (pitfall and best practices 201): 6/8(75%), missed 2 questions on lack of attention errors, pretty mad at myself. (308 participants took this quiz, average score was 4.4/8, average duration was 13:18, highest was 8/8, 114 got > 64% (> 5/8)).
 - test #6 (Audit techniques & tools 101): 13/16(81%), missed a few debatable questions but happy with the result (265 participants took this quiz, average score was 11.7/16, average duration was 12:20, highest was 16/16, 187 got > 64% (> 10/16)).
-- test #7 (Audit findings 101): 8/8(100%), obviously, really happy with that one.
-- test #8 (Audit finding 201): 5/8 (62.5%), not great, could have done better if I studied more.
+- test #7 (Audit findings 101): 8/8(100%), obviously, really happy with that one. (263 participants took Slot 7 quiz, average score was 4.9/8, average duration was 12:45, highest was 8/8, 113 got > 64% (> 5/8).)
+- test #8 (Audit finding 201): 5/8 (62.5%), not great, could have done better if I studied more. (251 participants took Slot 8 quiz, average score was 3.6/8, average duration was 14:00, highest was 8/8, 56 got > 64% (> 5/8).)
 
 ## Tests Results
 23 + 25 + 24 + (9*2) + (6*4) + (13*2) + (8*4) + (5*4) = 192 / 256 pts (75%). Not bad overall, could have done better.
