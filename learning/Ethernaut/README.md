@@ -1,4 +1,4 @@
-This is a new walkthrough of the Ethernaut Solidity CTF.
+# This is a walkthrough of the Ethernaut Solidity CTF.
 
 I did it previously but I want to go through it again and write a detailled walkthrough.
 
@@ -76,4 +76,20 @@ contract Caller {
 }
 ```
 The tx.origin will be your metamask address, the msg.sender will be your Caller contract, and therefore you will pass the check on the first line of 'changeOwner()'.
+
+## Lvl-5 Token
+The first thing you need to notice, in that level, is the abscence of safeMath library. We are dealing with a token from a contract that is not protected by safeMath for overflow and underflow.
+The attack is therefore simple.
+You just need to use the transfer function to send more than what you have, which will underflow your balance and you will end up with a ridiculous amount of tokens.
+Simply use the console to call the transfer() function:
+``
+await contract.transfer('0xF553874CD699b2285DCcCe8d014e9B0f66eFC63d', 21000000);
+``
+and click submit.
+
+## Lvl-6 DelegateCall
+A quick look at the code shows us that the main contract has a fallback function that delegateCalls another contract.
+If we can send a transaction to the main contract with instructions to call the pwn() function, our call will go through to the 'Delegate' contract and execute the pwn() function.
+To do this, we need to prepare the payload with by typing in the console: `const payload = web3.eth.abi.encodeFunctionSignature("pwn()")` which is '0xdd365b8b', the 4 first bytes signature of the function 'pwn()', send call the fallback() function with the payload as data of the call: `await contract.sendTransaction({data: payload})`.
+Wait for tx to be mined and, voila, you are now the owner of the delegation contract!
 
