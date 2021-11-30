@@ -34,7 +34,9 @@ The code comments say that Fallout() is the constructor but that's wrong. Since 
 ## Lvl-3 CoinFlip
 In order to beat this level, you need to write a smart contract in remix that does the same calcul then the targeted contract and send the guess to the target.
 Here is the code:
-```pragma solidity 0.6.0;
+
+```
+pragma solidity 0.6.0;
 
 import 'https://github.com/OpenZeppelin/openzeppelin-contracts/blob/docs-v3.x/contracts/math/SafeMath.sol';
 
@@ -57,7 +59,8 @@ contract Flipper {
         bool side = coinFlip == 1 ? true : false;
         target.flip(side);
     }
-}```
+}
+```
 Then just call the 'attack()' function 10 times (wait some time between each calls to be sure you are not calling the function twice within one block).
 
 ## Lvl-4 Telephone
