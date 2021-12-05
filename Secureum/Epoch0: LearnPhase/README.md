@@ -24,7 +24,6 @@ Final Results: Got 192/256 (75%). Pretty happy but could have doon better. Now n
 Finalized scored got published on 12/01. My 192/256 gets me to be top 38 to top 43 out of the +1000 that started the bootcamp and out of the 251 that took the last quizz.
 Top 1 got 232/256 which is pretty insane!
 
-
 ## Tests Results
 23 + 25 + 24 + (9*2) + (6*4) + (13*2) + (8*4) + (5*4) = 192 / 256 pts (75%). Not bad overall, could have done better.
 Now we wait to see if I'm in the top 128. So far I'm top 50. There is still 2 tests to be counted for but I got 100% and 62.5% on those tests so I should be fine.
