@@ -21,6 +21,9 @@ Every week there is a 32 questions tests. The first test surprised me by hom dif
 - test #8 (Audit finding 201): 5/8 (62.5%), not great, could have done better if I studied more. (251 participants took Slot 8 quiz, average score was 3.6/8, average duration was 14:00, highest was 8/8, 56 got > 64% (> 5/8).)
 
 Final Results: Got 192/256 (75%). Pretty happy but could have doon better. Now need to wait for the results.
+Finalized scored got published on 12/01. My 192/256 gets me to be top 38 to top 43 out of the +1000 that started the bootcamp and out of the 251 that took the last quizz.
+Top 1 got 232/256 which is pretty insane!
+
 
 ## Tests Results
 23 + 25 + 24 + (9*2) + (6*4) + (13*2) + (8*4) + (5*4) = 192 / 256 pts (75%). Not bad overall, could have done better.
