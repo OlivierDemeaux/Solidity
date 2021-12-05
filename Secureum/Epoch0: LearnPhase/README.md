@@ -20,6 +20,8 @@ Every week there is a 32 questions tests. The first test surprised me by hom dif
 - test #7 (Audit findings 101): 8/8(100%), obviously, really happy with that one. (263 participants took Slot 7 quiz, average score was 4.9/8, average duration was 12:45, highest was 8/8, 113 got > 64% (> 5/8).)
 - test #8 (Audit finding 201): 5/8 (62.5%), not great, could have done better if I studied more. (251 participants took Slot 8 quiz, average score was 3.6/8, average duration was 14:00, highest was 8/8, 56 got > 64% (> 5/8).)
 
+Final Results: Got 192/256 (75%). Pretty happy but could have doon better. Now need to wait for the results.
+
 ## Tests Results
 23 + 25 + 24 + (9*2) + (6*4) + (13*2) + (8*4) + (5*4) = 192 / 256 pts (75%). Not bad overall, could have done better.
 Now we wait to see if I'm in the top 128. So far I'm top 50. There is still 2 tests to be counted for but I got 100% and 62.5% on those tests so I should be fine.
