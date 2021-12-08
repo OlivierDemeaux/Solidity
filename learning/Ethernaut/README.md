@@ -202,3 +202,11 @@ contract Convert {
 to know what the bytes16 version of it is.
 Then simply call the unlock() function of the private contract with the bytes16 key and voila, the contract is unlocked.
 
+## Lvl-13 GateOne
+We need to pass 3 checks to open the door.
+The first check is easy, just call enter() from a smart contract.
+The second check is harder, so we will keep that one for last.
+The third check takes a bytes8 as input and has 3 differents checks in it.
+    - The easiest is the last one, which checks if "uint32(uint64(_gateKey)) == uint16(tx.origin)", meaning that the byte8 key (0x????????????????) converted to uint64 (all 8 bytes) then converted to uint32 (32 bit of the uint64 of the byte8 key) must be equal to uint16(tx.origin), which is the last 2 bytes of the calling address (0x?????????????!!!!). So, for this check, only the last 2 bytes of the key matter, and they need to be equal to the last 2 bytes of the tx.origin. Since our metamask address is '0x7b8A7924bE6b4102e82880D27499a9AFc08ecDfF', our key, so far, is 0x000000000000cDfF
+    - The second check if "uint32(uint64(_gateKey)) != uint64(_gateKey)", which means our key converted to uint64 shouldn't be equal to our key converted to uint32, so one of the 5th, 6th, 7th or 8th byte need to not be null. So now our key is 0x0000000F0000cDfF (changed the 5th byte from the right from 00 to 0F).
+    - The 3rd check (which is )
