@@ -221,6 +221,11 @@ uint64(_gateKey) = uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ (ui
 So we just have to call the enter() function with the param bytes8(uint64(bytes8(keccak256(abi.encodePacked(msg.sender)))) ^ (uint64(0) - 1)).
 Done.
 
-
 ## Lvl-15 Naught Coin
 To pass this level, you need to empty your balance of the ERC20 that the contract gives you. You can't directly transafer them because of the locked time, but you can call the approuve() and the transferFrom() functions and have another address move your coins and empty your balance. Voila!
+
+## Lvl-16 Preservation
+This level has a contract calling a lib throught a delegateCall, which are known to create a lot of vulnerabilities.
+It's obvious then that the delegateCall is our way to attack this contract.
+The delegateCall calls a lib to update the time stored in the lib, in the storage first slot. Since it's a delegateCall, the call is executed in the caller's context, which means that when updating the stored time, the lib actually updates the first slot of memory of the caller contract, which is the Preservation contract.
+So, if we deploy an attack library that, when called, updates it's 3rd slot of memory, we could update the 3rd slot of memory of the preservation contract if we delegateCall our attack library. To do so, we need to replace the address of one of the already in place library with the address of our maalicious library. To do so, we call "preservation.setFirstTime(uint(address(attackLib)));" that will update "address public timeZone1Library" to our malicious library, then we call "preservation.setFirstTime()" again and we have our library that updates the 3rd slot of memory and replace the owner of Preservation by our address.
