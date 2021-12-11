@@ -37,12 +37,15 @@ So '6080604052' is 'PUSH1 0x60 PUSH1 0x40 MSTORE'
 
 # Second part
 
-The second part of this bytecode is 603f8060116000396000f3fe.
-Opcode 60, 'push1', pushes byte 3f (value 63) to the empty stack,
-Opcode 80, 'dup1', clones the last value of the stack, so now the stack has 3f at location 0 and 1.
-Opcode 60, 'push1', pushes byte 11 (value 17) to the stack. Stack is now 11, 3f, 3f.
-Opcode 60, 'push1', pushes byte 00 to the stack. Stack is now 00, 11, 3f, 3f.
-Opcode 39, 'codecopy', takes the 3 lowest value of the stack (00 (destOffset), 11 (offset), 3f (length)), and copy the code like so: 'memory[destOffset:destOffset+length] = address(this).code[offset:offset+length]', so it copies to memory from location 00 to 3f the code from the calldata from position 11 to 11+3f.
-So bytes from value 17 to 63 from the calldata:
-6080604052603f8060116000396000f3fe@@6080604052600080fdfea26469706673582212209da86916af98aae2b88dd73cde282a5e66f3106301696607b02046b8e1bf6f0164736f6c63430007000033@@
+The second part of this bytecode is 603f8060116000396000f3fe.  
+Opcode 60, 'push1', pushes byte 3f (value 63) to the empty stack.  
+Opcode 80, 'dup1', clones the last value of the stack, so now the stack has 3f at location 0 and 1.  
+Opcode 60, 'push1', pushes byte 11 (value 17) to the stack. Stack is now 11, 3f, 3f.  
+Opcode 60, 'push1', pushes byte 00 to the stack. Stack is now 00, 11, 3f, 3f.  
+Opcode 39, 'codecopy', takes the 3 lowest value of the stack (00 (destOffset), 11 (offset), 3f (length)), burns them, and copy the code like so: 'memory[destOffset:destOffset+length] = address(this).code[offset:offset+length]', so it copies to memory from location 00 to 3f the code from the calldata from position 11 to 11+3f.  
+So bytes from value 18 to 18+63 = 81 from the calldata:  
+6080604052600080fdfea26469706673582212209da86916af98aae2b88dd73cde282a5e66f3106301696607b02046b8e1bf6f0164736f6c63430007000033
+are now in the memory and the stack is now 3f.  
+Opcode 60, 'push1', pushes byte 00 to the stack.  
+Opcode f3, 'return', returns byte 'fe' which is opcode for 'invalid'.  
 
