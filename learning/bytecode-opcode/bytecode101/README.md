@@ -1,4 +1,4 @@
-# Dissection EVM bytecode  
+# Dissecting EVM bytecode  
 
 ## Compile contract and returned bytecode
 
