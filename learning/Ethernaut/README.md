@@ -234,3 +234,33 @@ So, if we deploy an attack library that, when called, updates it's 3rd slot of m
 ## Lvl-17 Recovery
 I used a blockexplorer to find the address and loaded it on remix to call the destroy() function and have the 0.5 eth sent back to me. 
 Efficiency is clever laziness.
+
+## Lvl-18 MagicNumber
+This level needs us to put together bytecode to solve it.  
+I have a deep dive into EVM bytecode on my github, under "bytecode-opcode", for more details.  
+
+So, we need to produce a bytecode of 10 bytes that will return '42'.  
+To do this, we need to work backward. In order to return '42', we need to call the 'return' opcode, which is 'f3'.  
+The 'return' opcode takes 2 arguments, offset and length. So now we need to push the args. We push 'length' first so it will be in position 2 after we push 'offset'.  
+We know we need to return '42', which will sit in a 32 bytes memory slot, so need to return all of the 32 bytes, so 6020 will push arg length 32 bytes to the stack, then '6000' will push '00' on the stack as offset since our '42' will sit on the first memory slot.  
+So far, our bytecode is '60206000f3'.  
+But, to be able to use memory values, we first need to push those values into the memory.  
+In order to do that, we need to use opcode '52' for 'mstore', that takes 2 args, offset and value.  
+Again, we push value first, '602a' (push1 value '42' to the stack), '6000', then '52'.  
+Our bytecode is now '602a60005260206000f3' which is 10bytes long.  
+This is the bytecode of a contract that will return '42' when called. This is our payload:  
+Now, we need to complete the bytecode to deploy our payload on the blockchain.  
+To do this, we need to work backward again.  
+We will have to use the 'codecopy' opcode in order to copy to the blockchain our payload, and the 'return' opcode to signal that we have finished when we set out to do.  
+So, again, opcode 'f3', 'return', take 2 args, '600a' because we are returning the 10 bytes of our payload, '6000' because our payload will be sitting in our slot 0 of memory.  
+Our bytecode is now '600a6000f3602a60005260206000f3'. Almost there!  
+Now we need to use the opcode '39', 'codecopy', that will copy executing contract bytecode to memory, that takes 3 args, destOffset, offset, length. Again, starting backward, length is 10 bytes so '600a', offset is where in the bytecode to start copying, so if we look our bytecode so far '600a60??60??600a600039f3602a60005260206000f3', the part of the bytecode we want to copy start at byte #13 so we want to push value '12' to the stack => '600c', and finaly destOffset is where we want our code copy, which is simply slot 0, so '6000'.
+And there we have it, our finalized opcode '600a600c600039600a6000f3602a60005260206000f3'!
+
+From there, we simply have to use the console on Ethernaut to do:  
+'var bytecode = "0x600a600c600039600a6000f3602a60005260206000f3"', then  
+'web3.eth.sendTransaction({ from: player, data: bytecode }, function(err,res){console.log(res)});'  
+that will create a contract on the blockchain.
+Then we simply take that contract address and call the solver with it:  
+'await contract.setSolver("YourContractAddress")'  
+and voila!
