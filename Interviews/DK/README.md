@@ -9,3 +9,7 @@ Had a blast while coding it so re wrote it from memory and added to it what I th
 ToDo: 
     - Need to add event
     - Need to add hardhat testing
+
+
+
+Notes: Went through all the interviews, was told I should expect an offer, but less than 24h later was told that the role changed and they were looking for someone with more experience..
