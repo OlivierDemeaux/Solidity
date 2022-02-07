@@ -12,4 +12,4 @@ ToDo:
 
 
 
-Notes: Went through all the interviews, was told I should expect an offer, but less than 24h later was told that the role changed and they were looking for someone with more experience..
+Notes: Went through all the interviews, was told everything went well, that I interviewed very well, ... and I should expect an offer, but less than 24h later was told that the role changed and they were looking for someone with more experience..
