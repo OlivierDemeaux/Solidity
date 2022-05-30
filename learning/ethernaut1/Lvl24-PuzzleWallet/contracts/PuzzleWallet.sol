@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 //initially called: UpgradeableProxy
 import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
-import "hardhat/console.sol";
+import "../node_modules/hardhat/console.sol";
 
 
 // become admin
