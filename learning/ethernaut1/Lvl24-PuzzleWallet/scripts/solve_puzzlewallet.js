@@ -44,6 +44,10 @@ async function main() {
   const init_enc = iface.encodeFunctionData("init", [ 0x12345678 ])
 
   const [PuzzleWallet, pw] = await niceDeploy("PuzzleWallet");
+  console.log(PuzzleWallet);
+  console.log('here');
+  console.log(pw);
+  /*
   const [PuzzleProxy, proxy] = await niceDeploy("PuzzleProxy", accounts[0].address, pw.address, init_enc);
   let deco = PuzzleWallet.attach(proxy.address)
   
@@ -85,7 +89,7 @@ async function main() {
   await tx.wait()
 
   await printStatus(proxy, deco)
-
+*/
 }
 
 
